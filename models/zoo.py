@@ -11,11 +11,16 @@ class Zoo(models.Model):
         index=True,
         copy=False
     )
-    name = fields.Char(required=True, string="Animal Name")
-    size = fields.Integer(required=True, string="Size Animal")
+    name = fields.Char(required=True, string="Zoo's Name")
+    size = fields.Integer(required=True, string="Zoo's Size")
     country_id = fields.Many2one(
         "res.country",
         "Country",
+        required=True
+    ) 
+    city_id = fields.Many2one(
+        "res.city", 
+        string="City",
         required=True
     )
 

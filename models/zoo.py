@@ -1,5 +1,6 @@
 import uuid
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 class Zoo(models.Model):
     _name = "zoo.zoo"
@@ -24,3 +25,17 @@ class Zoo(models.Model):
         required=True,
     )
 
+    @api.onchange('city_id')
+    def _onchange_city_id(self):
+        if self.city_id:
+            self.country_id = self.city_id.country_id
+        else:
+            self.country_id = False
+
+    @api.constrains('city_id', 'country_id')
+    def _check_city_country_relation(self):
+        for record in self:
+            if record.city_id and record.city_id.country_id != record.country_id:
+                raise ValidationError(
+                    f"The city '{record.city_id.name}' does not belong to the country '{record.country_id.name}'."
+                )

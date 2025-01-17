@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="zoo" name="Zoologia Raul">
-    <menuitem id="zoo_view" name="Zoos" action="zoo_module_action"></menuitem>
+        <menuitem id="zoo_view" name="Zoos" action="zoo_module_action"></menuitem>
+        <menuitem id="settings" name="Settings">
+            <menuitem id="action_zoo_menu_city" name="City" action="action_zoo_city"/>
+        </menuitem>
     </menuitem>
 </odoo>

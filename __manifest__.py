@@ -5,6 +5,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/zoo_views.xml', 
+        'views/city_views.xml', 
         'views/estate_menus.xml', 
 
     ],

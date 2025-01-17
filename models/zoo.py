@@ -19,7 +19,7 @@ class Zoo(models.Model):
         required=True
     ) 
     city_id = fields.Many2one(
-        "res.city", 
+        "zoo.city", 
         string="City",
         required=True,
     )

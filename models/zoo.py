@@ -21,6 +21,6 @@ class Zoo(models.Model):
     city_id = fields.Many2one(
         "res.city", 
         string="City",
-        required=True
+        required=True,
     )
 

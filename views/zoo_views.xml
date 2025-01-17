@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="zoo_module_action" model="ir.actions.act_window">
+        <field name="name">Zoos</field> 
+        <field name="res_model">zoo.zoo</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_zoo_zooy_tree" model="ir.ui.view">
+        <field name="name">zoo.zoo.tree</field>
+        <field name="model">zoo.zoo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="size" />
+                <field name="country_id" />
+                <field name="city_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_zoo_zoo_form" model="ir.ui.view">
+        <field name="name">zoo.zoo.form</field>
+        <field name="model">zoo.zoo</field>
+        <field name="arch" type="xml">
+            <form string="Zoo Form">
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <field name="id" invisible="1" />
+                        <field name="size" />
+                        <field name="country_id" />
+                        <field name="city_id" />
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -4,6 +4,7 @@
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
+        'views/zoo_views.xml', 
         'views/estate_menus.xml', 
 
     ],

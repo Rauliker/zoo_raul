@@ -39,3 +39,11 @@ class Zoo(models.Model):
                 raise ValidationError(
                     f"The city '{record.city_id.name}' does not belong to the country '{record.country_id.name}'."
                 )
+
+    @api.constrains('size')
+    def _check_size_is_bigger_than_zero(self):
+        for record in self:
+            if record.size>= 0:
+                raise ValidationError(
+                    f"Size must be greater than 0."
+                )

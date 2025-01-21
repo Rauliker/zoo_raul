@@ -26,6 +26,11 @@ class ZooAnimal(models.Model):
         "Animal country",
         required=True
     )
+    animal_continent_id = fields.Many2one(
+        "zoo.continent",
+        "Animal continent",
+        required=True
+    )
     age = fields.Integer(
         string="Age",
         compute="_compute_age",

@@ -16,3 +16,9 @@ class ZooSpecies(models.Model):
     common_name = fields.Char(required=True, string="Common name")
     scientific_name = fields.Char(required=True, string="Scientific name")
     profile = fields.Char(required=True, string="Profile")
+    animal_id = fields.One2many(
+        "zoo.animal",
+        "species_id",
+        string="Animal",
+        required=True,
+    )

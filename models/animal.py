@@ -42,6 +42,11 @@ class ZooAnimal(models.Model):
         string="Zoo",
         required=True,
     )
+    species_id = fields.Many2one(
+        "zoo.species", 
+        string="Species",
+        required=True,
+    )
 
     @api.depends('date_birth')
     def _compute_age(self):

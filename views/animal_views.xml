@@ -37,6 +37,7 @@
                         <field name="animal_continent_id" />
                         <field name="age" />
                         <field name="zoo_id"/>
+                        <field name="species_id"/>
                     </group>
                     
                 </sheet>

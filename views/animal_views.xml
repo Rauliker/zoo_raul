@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="animal_module_action" model="ir.actions.act_window">
+        <field name="name">Animals</field> 
+        <field name="res_model">zoo.animal</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_zoo_animal_tree" model="ir.ui.view">
+        <field name="name">zoo.animal.tree</field>
+        <field name="model">zoo.animal</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="date_birth" />
+                <field name="gender" />
+                <field name="animal_country_id" />
+                <field name="animal_continent_id" />
+                <field name="age" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_zoo_animal_form" model="ir.ui.view">
+        <field name="name">zoo.animal.form</field>
+        <field name="model">zoo.animal</field>
+        <field name="arch" type="xml">
+            <form string="Animal Form">
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <field name="date_birth" />
+                        <field name="gender" />
+                        <field name="animal_country_id" />
+                        <field name="animal_continent_id" />
+                        <field name="age" />
+                        <field name="zoo_id"/>
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

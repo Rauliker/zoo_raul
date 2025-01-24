@@ -1,24 +1,25 @@
 import uuid
 from datetime import date
+from odoo.exceptions import ValidationError
 from odoo import fields, models, api
 
 class ZooAnimal(models.Model):
     _name = "zoo.animal"
-    
+
     id = fields.Char(
-        required=True, 
+        required=True,
         default=lambda self: str(uuid.uuid4()),
         readonly=True,
         index=True,
         copy=False
     )
     name = fields.Char(required=True, string="Animal Name")
-    date = fields.Date(required=True, string="Date of birth")
-    sexe = fields.Selection(
-        string="Sex of the animal",
+    date_birth = fields.Date(required=True, string="Date of birth")
+    gender = fields.Selection(
+        string="Gender of the animal",
         selection=[
-            ('male', 'Macho'),
-            ('female', 'Hembra'),
+            ('male', 'Male'),
+            ('female', 'Female'),
         ]
     )
     animal_country_id = fields.Many2one(
@@ -36,13 +37,29 @@ class ZooAnimal(models.Model):
         compute="_compute_age",
         store=True
     )
+    zoo_id = fields.Many2one(
+        "zoo.zoo", 
+        string="Zoo",
+        required=True,
+    )
 
-    @api.depends('date')
+    @api.depends('date_birth')
     def _compute_age(self):
         for record in self:
-            if record.date:
+            if record.date_birth:
                 today = date.today()
-                birth_date = fields.Date.from_string(record.date)
-                record.age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+                birth_date = fields.Date.from_string(record.date_birth)
+                record.age = (
+                    today.year - birth_date.year
+                    - ((today.month, today.day) < (birth_date.month, birth_date.day))
+                )
             else:
                 record.age = 0
+
+    @api.constrains('date_birth')
+    def _check_date_birth_is_valid(self):
+        for record in self:
+            if record.date_birth >= fields.Date.today():
+                raise ValidationError(
+                    "The date of birth must be earlier than today."
+                )

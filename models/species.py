@@ -13,6 +13,6 @@ class ZooSpecies(models.Model):
         copy=False
     )
     family = fields.Char(required=True, string="Family")
-    common_name = fields.Date(required=True, string="Common name")
-    scientific_name = fields.Date(required=True, string="Scientific name")
-    profile = fields.Date(required=True, string="Profile")
+    common_name = fields.Char(required=True, string="Common name")
+    scientific_name = fields.Char(required=True, string="Scientific name")
+    profile = fields.Char(required=True, string="Profile")

@@ -3,6 +3,7 @@
     <menuitem id="zoo" name="Zoologia Raul">
         <menuitem id="zoo_view" name="Zoos" action="zoo_module_action"></menuitem>
         <menuitem id="settings" name="Settings">
+            <menuitem id="action_zoo_menu_animal" name="Animal" action="animal_module_action"/>
             <menuitem id="action_zoo_menu_continent" name="Continent" action="action_zoo_continent"/>
             <menuitem id="action_zoo_menu_city" name="City" action="action_zoo_city"/>
         </menuitem>

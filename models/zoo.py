@@ -13,7 +13,7 @@ class Zoo(models.Model):
         copy=False
     )
     name = fields.Char(required=True, string="Zoo's Name")
-    size = fields.Integer(required=True, string="Zoo's Size")
+    size = fields.Integer(required=True, string="Zoo's Size(sqm)")
     country_id = fields.Many2one(
         "res.country",
         "Country",
@@ -24,7 +24,12 @@ class Zoo(models.Model):
         string="City",
         required=True,
     )
-
+    animal_id = fields.One2many(
+        "zoo.animal",
+        "zoo_id",
+        string="Animal",
+        required=True,
+    )
     @api.onchange('city_id')
     def _onchange_city_id(self):
         if self.city_id:
@@ -43,7 +48,7 @@ class Zoo(models.Model):
     @api.constrains('size')
     def _check_size_is_bigger_than_zero(self):
         for record in self:
-            if record.size>= 0:
+            if record.size <= 0:
                 raise ValidationError(
-                    f"Size must be greater than 0."
+                    "Size must be greater than 0."
                 )

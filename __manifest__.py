@@ -1,7 +1,7 @@
 {
     'name': 'Zoologia Raul',
     'application': True,
-    'depends': ['base'],
+    'depends': ['base','web',],
     'data': [
         'security/ir.model.access.csv',
         'views/zoo_views.xml',

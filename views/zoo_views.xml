@@ -6,7 +6,7 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <record id="view_zoo_zooy_tree" model="ir.ui.view">
+    <record id="view_zoo_zoo_tree" model="ir.ui.view">
         <field name="name">zoo.zoo.tree</field>
         <field name="model">zoo.zoo</field>
         <field name="arch" type="xml">
@@ -14,7 +14,7 @@
                 <field name="name" />
                 <field name="size" />
                 <field name="country_id" />
-                <field name="city_id" />
+                <field name="city_name" />
             </tree>
         </field>
     </record>
@@ -32,7 +32,7 @@
                         <field name="id" invisible="1" />
                         <field name="size" />
                         <field name="country_id" />
-                        <field name="city_id" />
+                        <field name="city_name" />
                     </group>
                     <notebook>
                         <page string="Animals">
@@ -43,4 +43,26 @@
             </form>
         </field>
     </record>
+
+    <record id="view_zoo_zoo_search" model="ir.ui.view">
+        <field name="name">zoo.zoo.search</field>
+        <field name="model">zoo.zoo</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="size" filter_domain="[('size', '>=', self)]"/>
+                <field name="country_id"/>
+                <field name="provincia_id"/>
+                <field name="city_name"/>
+                <filter string="Small Zoos" name="small" domain="[('size', '&lt;', 5000)]"/>
+                <filter string="Large Zoos" name="large" domain="[('size', '&gt;', 5000)]"/>
+                <!-- <group expand="0" string="Group By">
+                    <filter string="Country" domain="[]" context="{'group_by': 'country_id'}"/>
+                    <filter string="Province" domain="[]" context="{'group_by': 'provincia_id'}"/>
+                    <filter string="City" domain="[]" context="{'group_by': 'city_name'}"/>
+                </group> -->
+            </search>
+        </field>
+    </record>
+
 </odoo>

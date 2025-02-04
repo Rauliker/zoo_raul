@@ -11,8 +11,9 @@
         <field name="model">zoo.animal</field>
         <field name="arch" type="xml">
             <tree>
-                <!-- <field name="image" widget="image" class="oe_avatar"/> -->
+                <!-- <field name="images" widget="image" class="oe_avatar"/> -->
                 <field name="name" />
+                <field name="food_type"/>
                 <field name="date_birth" />
                 <field name="gender" />
                 <field name="animal_country_id" />
@@ -39,6 +40,7 @@
                         <field name="animal_continent_id" />
                         <field name="age" />
                         <field name="zoo_id"/>
+                        <field name="food_type"/>
                         <field name="species_id" options="{'no_create': True}"  context="{'default_species_id': 1}"/>
                     </group>
                     
@@ -53,6 +55,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name"/>
+                <field name="food_type"/>
                 <field name="date_birth"/>
                 <field name="gender"/>
                 <field name="animal_country_id"/>
@@ -60,11 +63,21 @@
                 <field name="age" filter_domain="[('age', '>=', self)]"/>
                 <field name="zoo_id"/>
                 <field name="species_id"/>
+                <filter string="Herbivore" name="herbivores" domain="[('food_type', '=', 'herbivore')]"/>
+                <filter string="Carnivore" name="carnivores" domain="[('food_type', '=', 'carnivore')]"/>
+                <filter string="Omnivore" name="omnivores" domain="[('food_type', '=', 'omnivore')]"/>
+                <filter string="Frugivore" name="frugivores" domain="[('food_type', '=', 'frugivore')]"/>
+                <filter string="Piscivore" name="piscivores" domain="[('food_type', '=', 'piscivore')]"/>
+                <filter string="Insectivore" name="insectivores" domain="[('food_type', '=', 'insectivore')]"/>
+                <filter string="Folivore" name="folivores" domain="[('food_type', '=', 'folivore')]"/>
+                <filter string="Nectarivore" name="nectarivores" domain="[('food_type', '=', 'nectarivore')]"/>
+                <filter string="Granivore" name="granivores" domain="[('food_type', '=', 'granivore')]"/>
                 <group expand="0" string="Group By">
                     <filter string="Country" name="country" domain="[]" context="{'group_by': 'animal_country_id'}"/>
                     <filter string="Continent" name="continent" domain="[]" context="{'group_by': 'animal_continent_id'}"/>
                     <filter string="Species" name="species" domain="[]" context="{'group_by': 'species_id'}"/>
                     <filter string="Zoo" name="zoo" domain="[]" context="{'group_by': 'zoo_id'}"/>
+                    <filter string="Food Type" name="food_type" domain="[]" context="{'group_by': 'food_type'}"/>
                 </group>
             </search>
         </field>

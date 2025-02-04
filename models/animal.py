@@ -16,6 +16,21 @@ class ZooAnimal(models.Model):
             ('female', 'Female'),
         ]
     )
+    food_type = fields.Selection(
+        string="Food Type",
+        selection=[
+            ('herbivore', 'Herbivore'),
+            ('carnivore', 'Carnivore'),
+            ('omnivore', 'Omnivore'),
+            ('frugivore', 'Frugivore'),
+            ('piscivore', 'Piscivore'),
+            ('insectivore', 'Insectivore'),
+            ('folivore', 'Folivore'),
+            ('nectarivore', 'Nectarivore'),
+            ('granivore', 'Granivore')
+        ],
+        required=True
+    )
     animal_country_id = fields.Many2one(
         "res.country",
         "Animal country",

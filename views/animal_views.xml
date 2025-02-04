@@ -11,6 +11,7 @@
         <field name="model">zoo.animal</field>
         <field name="arch" type="xml">
             <tree>
+                <!-- <field name="image" widget="image" class="oe_avatar"/> -->
                 <field name="name" />
                 <field name="date_birth" />
                 <field name="gender" />
@@ -31,6 +32,7 @@
                         <field name="name"/>
                     </h1>
                     <group>
+                        <field name="images" widget="image" class="oe_avatar"/>
                         <field name="date_birth" />
                         <field name="gender" />
                         <field name="animal_country_id" />

@@ -8,6 +8,7 @@ class ZooAnimal(models.Model):
 
     name = fields.Char(required=True, string="Animal Name")
     date_birth = fields.Date(required=True, string="Date of birth")
+    images = fields.Image(string="Images")
     gender = fields.Selection(
         string="Gender of the animal",
         selection=[

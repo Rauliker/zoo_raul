@@ -56,11 +56,11 @@
                 <field name="city_name"/>
                 <filter string="Small Zoos" name="small" domain="[('size', '&lt;', 5000)]"/>
                 <filter string="Large Zoos" name="large" domain="[('size', '&gt;', 5000)]"/>
-                <!-- <group expand="0" string="Group By">
-                    <filter string="Country" domain="[]" context="{'group_by': 'country_id'}"/>
-                    <filter string="Province" domain="[]" context="{'group_by': 'provincia_id'}"/>
-                    <filter string="City" domain="[]" context="{'group_by': 'city_name'}"/>
-                </group> -->
+                <group expand="0" string="Group By">
+                    <filter string="Country" name="country" domain="[]" context="{'group_by': 'country_id'}"/>
+                    <filter string="Province" name="province" domain="[]" context="{'group_by': 'provincia_id'}"/>
+                    <filter string="City" name="city" domain="[]" context="{'group_by': 'city_name'}"/>
+                </group>
             </search>
         </field>
     </record>

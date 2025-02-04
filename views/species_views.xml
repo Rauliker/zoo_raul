@@ -28,9 +28,7 @@
                         <field name="common_name"/>
                     </h1>
                     <group>
-                        <field name="id" invisible="1" />
                         <field name="family" />
-                        <field name="common_name" />
                         <field name="scientific_name" />
                         <field name="profile" />
                     </group>

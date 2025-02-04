@@ -6,13 +6,6 @@ from odoo import fields, models, api
 class ZooAnimal(models.Model):
     _name = "zoo.animal"
 
-    id = fields.Char(
-        required=True,
-        default=lambda self: str(uuid.uuid4()),
-        readonly=True,
-        index=True,
-        copy=False
-    )
     name = fields.Char(required=True, string="Animal Name")
     date_birth = fields.Date(required=True, string="Date of birth")
     gender = fields.Selection(
@@ -46,6 +39,8 @@ class ZooAnimal(models.Model):
         "zoo.species", 
         string="Species",
         required=True,
+        domain=[('id', '!=', False)],
+        ondelete="cascade",  
     )
 
     @api.depends('date_birth')

@@ -37,7 +37,7 @@
                         <field name="animal_continent_id" />
                         <field name="age" />
                         <field name="zoo_id"/>
-                        <field name="species_id"/>
+                        <field name="species_id" options="{'no_create': True}"  context="{'default_species_id': 1}"/>
                     </group>
                     
                 </sheet>
@@ -55,9 +55,15 @@
                 <field name="gender"/>
                 <field name="animal_country_id"/>
                 <field name="animal_continent_id"/>
-                <field name="age"/>
+                <field name="age" filter_domain="[('age', '>=', self)]"/>
                 <field name="zoo_id"/>
                 <field name="species_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Country" name="country" domain="[]" context="{'group_by': 'animal_country_id'}"/>
+                    <filter string="Continent" name="continent" domain="[]" context="{'group_by': 'animal_continent_id'}"/>
+                    <filter string="Species" name="species" domain="[]" context="{'group_by': 'species_id'}"/>
+                    <filter string="Zoo" name="zoo" domain="[]" context="{'group_by': 'zoo_id'}"/>
+                </group>
             </search>
         </field>
     </record>

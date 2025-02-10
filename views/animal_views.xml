@@ -11,9 +11,9 @@
             <field name="name">zoo.animal.tree</field>
             <field name="model">zoo.animal</field>
             <field name="arch" type="xml">
-                <tree decoration-success="food_type == 'herbivore'"
-                    decoration-danger="food_type == 'carnivore'"
-                    decoration-info="food_type == 'omnivore'">
+                <tree decoration-success="status == 'alive'"
+                    decoration-danger="status == 'sick'"
+                    decoration-info="status == 'dead'">
                     <field name="name"/>
                     <field name="food_type"/>
                     <field name="date_birth"/>

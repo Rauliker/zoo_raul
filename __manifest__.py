@@ -11,13 +11,5 @@
         'views/continent_views.xml', 
         'views/estate_menus.xml',
     ],
-    'assets': {
-        'web.assets_frontend': [
-            'zoo_raul/static/src/css/styles.css',
-        ],
-        'web.assets_backend': [
-            'zoo_raul/static/src/scss/styles.scss',
-        ],
-    },
     'icon': '/zoo_raul/static/description/icon.png',
 }

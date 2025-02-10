@@ -1,7 +1,7 @@
-import uuid
-from datetime import date
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo import fields, models, api
+from datetime import date
+
 class ZooAnimal(models.Model):
     _name = "zoo.animal"
 
@@ -10,10 +10,7 @@ class ZooAnimal(models.Model):
     images = fields.Image(string="Images")
     gender = fields.Selection(
         string="Gender of the animal",
-        selection=[
-            ('male', 'Male'),
-            ('female', 'Female'),
-        ]
+        selection=[('male', 'Male'), ('female', 'Female')]
     )
     food_type = fields.Selection(
         string="Food Type",
@@ -30,47 +27,24 @@ class ZooAnimal(models.Model):
         ],
         required=True
     )
-    animal_country_id = fields.Many2one(
-        "res.country",
-        "Animal country",
-        required=True
-    )
-    animal_continent_id = fields.Many2one(
-        "zoo.continent",
-        "Animal continent",
-        required=True
-    )
-    age = fields.Integer(
-        string="Age",
-        compute="_compute_age",
-        store=True
-    )
-    zoo_id = fields.Many2one(
-        "zoo.zoo", 
-        string="Zoo",
-        required=True,
-    )
+    animal_country_id = fields.Many2one("res.country", "Animal country", required=True)
+    animal_continent_id = fields.Many2one("zoo.continent", "Animal continent", required=True)
+    age = fields.Integer(string="Age", compute="_compute_age", store=True)
+    zoo_id = fields.Many2one("zoo.zoo", string="Zoo", required=True)
     species_id = fields.Many2one(
         "zoo.species", 
-        string="Species",
-        required=True,
-        domain=[('id', '!=', False)],
-        ondelete="cascade",  
+        string="Species", 
+        required=True, 
+        domain=[('id', '!=', False)], 
+        ondelete="cascade"
     )
     status = fields.Selection(
         string="Status",
-        selection=[
-            ('alive', 'Alive'),
-            ('sick', 'Sick'),
-            ('dead', 'Dead'),
-        ],
+        selection=[('alive', 'Alive'), ('sick', 'Sick'), ('dead', 'Dead')],
         default='alive',
         required=True
     )
-    date_of_death = fields.Date(
-        string="Date of Death",
-        store=True
-    )
+    date_of_death = fields.Date(string="Date of Death", store=True)
 
     @api.depends('date_birth', 'status', 'date_of_death')
     def _compute_age(self):
@@ -96,11 +70,12 @@ class ZooAnimal(models.Model):
     def _check_date_birth_is_valid(self):
         for record in self:
             if record.date_birth >= fields.Date.today():
-                raise ValidationError(
-                    "The date of birth must be earlier than today."
-                )
+                raise ValidationError("The date of birth must be earlier than today.")
 
     @api.onchange('status')
     def _onchange_status(self):
         if self.status == 'dead' and not self.date_of_death:
             self.date_of_death = fields.Date.today()
+
+    def status_button(self):
+        pass

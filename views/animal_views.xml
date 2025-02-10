@@ -1,160 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="animal_module_action" model="ir.actions.act_window">
-        <field name="name">Animals</field> 
-        <field name="res_model">zoo.animal</field>
-        <field name="view_mode">kanban,list,form</field>
-    </record>
+    <data>
+        <record id="animal_module_action" model="ir.actions.act_window">
+            <field name="name">Animals</field> 
+            <field name="res_model">zoo.animal</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>
 
-    <record id="action_open_form_view" model="ir.actions.act_window">
-        <field name="name">Open Animal Form</field>
-        <field name="res_model">zoo.animal</field>
-        <field name="view_mode">form</field>
-        <field name="target">current</field>
-    </record>
+        <record id="view_zoo_animal_tree" model="ir.ui.view">
+            <field name="name">zoo.animal.tree</field>
+            <field name="model">zoo.animal</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="food_type"/>
+                    <field name="date_birth" />
+                    <field name="gender" />
+                    <field name="animal_country_id" />
+                    <field name="animal_continent_id" />
+                    <field name="age" />
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
 
-
-    <record id="view_zoo_animal_tree" model="ir.ui.view">
-        <field name="name">zoo.animal.tree</field>
-        <field name="model">zoo.animal</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="name" />
-                <field name="food_type"/>
-                <field name="date_birth" />
-                <field name="gender" />
-                <field name="animal_country_id" />
-                <field name="animal_continent_id" />
-                <field name="age" />
-                <field name="status"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="view_zoo_animal_kanban" model="ir.ui.view">
-        <field name="name">zoo.animal.kanban</field>
-        <field name="model">zoo.animal</field>
-        <field name="arch" type="xml">
-            <kanban class="o_kanban_mobile">
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_card" style="display: flex; align-items: center; justify-content: space-between;">
-                            <div class="oe_kanban_image" style="flex-shrink: 0; margin-right: 10px;">
-                                <field name="images" widget="image" class="oe_avatar" style="width: 100px; height: 100px; object-fit: cover;"/>
-                            </div>
-
-                            <div class="oe_kanban_content" style="flex-grow: 1;">
-                                <strong class="oe_kanban_title">
-                                    <field name="name"/>
-                                </strong>
-                                <span class="oe_kanban_species">
-                                    (<field name="species_id"/>)
-                                </span>
-                                <div class="oe_kanban_details" style="margin-top: 5px;">
-                                    <span class="oe_kanban_date">
-                                        <field name="date_birth"/>
-                                    </span>
+        <record id="view_zoo_animal_kanban" model="ir.ui.view">
+            <field name="name">zoo.animal.kanban</field>
+            <field name="model">zoo.animal</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click" style="display: flex; align-items: center; justify-content: space-between;">
+                                <div class="oe_kanban_image" style="flex-shrink: 0; margin-right: 10px;">
+                                    <field name="images" widget="image" class="oe_avatar" style="width: 100px; height: 100px; object-fit: cover;"/>
                                 </div>
-                                <div class="oe_kanban_details" style="margin-top: 5px;">
-                                    <span class="oe_kanban_age">
-                                        <field name="age"/>
+
+                                <div class="oe_kanban_content" style="flex-grow: 1;">
+                                    <strong class="oe_kanban_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <span class="oe_kanban_species">
+                                        (<field name="species_id"/>)
                                     </span>
-                                </div>
                                     <div class="oe_kanban_details" style="margin-top: 5px;">
-                                    <span class="oe_kanban_zoo">
-                                        <field name="zoo_id"/>
-                                    </span>
+                                        <span class="oe_kanban_date">
+                                            <field name="date_birth"/>
+                                        </span>
+                                    </div>
+                                    <div class="oe_kanban_details" style="margin-top: 5px;">
+                                        <span class="oe_kanban_age">
+                                            <field name="age"/>
+                                        </span>
+                                    </div>
+                                    <div class="oe_kanban_details" style="margin-top: 5px;">
+                                        <span class="oe_kanban_zoo">
+                                            <field name="zoo_id"/>
+                                        </span>
+                                    </div>
                                 </div>
-                                
-                            </div>
 
-                            <div class="o_kanban_tags" style="flex-shrink: 0; margin-left: 10px;">
-                                <div class="oe_kanban_details" style="margin-top: 5px;">
-                                    <span class="oe_kanban_food_type">
-                                        <field name="food_type"/>
-                                    </span>
-                                </div>
-                                <div class="oe_kanban_details" style="margin-top: 5px;">
-                                    <span class="oe_kanban_gender">
-                                        <field name="gender"/>
-                                    </span>
-                                </div>
-                                <div class="oe_kanban_details" style="margin-top: 5px;">
-                                    <div class="oe_kanban_button">
-                                        <button type="action" name="%(action_open_form_view)d"/>
+                                <div class="o_kanban_tags" style="flex-shrink: 0; margin-left: 10px;">
+                                    <div class="oe_kanban_details" style="margin-top: 5px;">
+                                        <span class="oe_kanban_food_type">
+                                            <field name="food_type"/>
+                                        </span>
+                                    </div>
+                                    <div class="oe_kanban_details" style="margin-top: 5px;">
+                                        <span class="oe_kanban_gender">
+                                            <field name="gender"/>
+                                        </span>
+                                    </div>
+                                    <div class="oe_kanban_details" style="margin-top: 5px;">
+                                        <button 
+                                            t-att-style="record.status.raw_value == 'alive' and 'background-color: green; color: white; font-weight: bold;' 
+                                            or record.status.raw_value == 'sick' and 'background-color: orange; color: white; font-weight: bold;' 
+                                            or record.status.raw_value == 'dead' and 'background-color: black; color: white; font-weight: bold;'">
+                                            <field name="status" />
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
-    </record>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
 
-    <record id="view_zoo_animal_form" model="ir.ui.view">
-        <field name="name">zoo.animal.form</field>
-        <field name="model">zoo.animal</field>
-        <field name="arch" type="xml">
-            <form string="Animal Form">
-                <sheet>
-                    <h1>
-                        <field name="name"/>
-                    </h1>
-                    <group>
-                        <field name="images" widget="image" class="oe_avatar"/>
-                        <field name="date_birth" />
-                        <field name="gender" />
-                        <field name="animal_country_id" />
-                        <field name="animal_continent_id" />
-                        <field name="age" />
-                        <field name="zoo_id"/>
-                        <field name="food_type"/>
-                        <field name="status"/>
-                        <field name="date_of_death"/>
-                        <field name="species_id" options="{'no_create': True}"  context="{'default_species_id': 1}"/>
+        <record id="view_zoo_animal_form" model="ir.ui.view">
+            <field name="name">zoo.animal.form</field>
+            <field name="model">zoo.animal</field>
+            <field name="arch" type="xml">
+                <form string="Animal Form">
+                    <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <field name="images" widget="image" class="oe_avatar"/>
+                            <field name="date_birth" />
+                            <field name="gender" />
+                            <field name="animal_country_id" />
+                            <field name="animal_continent_id" />
+                            <field name="age" />
+                            <field name="zoo_id"/>
+                            <field name="food_type"/>
+                            <field name="status"/>
+                            <field name="date_of_death"/>
+                            <field name="species_id" options="{'no_create': True}"  context="{'default_species_id': 1}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_zoo_animal_search" model="ir.ui.view">
+            <field name="name">zoo.animal.search</field>
+            <field name="model">zoo.animal</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="food_type"/>
+                    <field name="date_birth"/>
+                    <field name="gender"/>
+                    <field name="animal_country_id"/>
+                    <field name="animal_continent_id"/>
+                    <field name="age" filter_domain="[('age', '>=', self)]"/>
+                    <field name="zoo_id"/>
+                    <field name="species_id"/>
+                    <field name="status"/>
+                    <field name="date_of_death"/>
+                    <filter string="Alive" name="alive" domain="[('status', '=', 'alive')]"/>
+                    <filter string="Sick" name="sick" domain="[('status', '=', 'sick')]"/>
+                    <filter string="Dead" name="dead" domain="[('status', '=', 'dead')]"/>
+                    <filter string="Herbivore" name="herbivores" domain="[('food_type', '=', 'herbivore')]"/>
+                    <filter string="Carnivore" name="carnivores" domain="[('food_type', '=', 'carnivore')]"/>
+                    <filter string="Omnivore" name="omnivores" domain="[('food_type', '=', 'omnivore')]"/>
+                    <filter string="Frugivore" name="frugivores" domain="[('food_type', '=', 'frugivore')]"/>
+                    <filter string="Piscivore" name="piscivores" domain="[('food_type', '=', 'piscivore')]"/>
+                    <filter string="Insectivore" name="insectivores" domain="[('food_type', '=', 'insectivore')]"/>
+                    <filter string="Folivore" name="folivores" domain="[('food_type', '=', 'folivore')]"/>
+                    <filter string="Nectarivore" name=" nectarivores" domain="[('food_type', '=', 'nectarivore')]"/>
+                    <filter string="Granivore" name="granivores" domain="[('food_type', '=', 'granivore')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Country" name="country" domain="[]" context="{'group_by': 'animal_country_id'}"/>
+                        <filter string="Continent" name="continent" domain="[]" context="{'group_by': 'animal_continent_id'}"/>
+                        <filter string="Species" name="species" domain="[]" context="{'group_by': 'species_id'}"/>
+                        <filter string="Zoo" name="zoo" domain="[]" context="{'group_by': 'zoo_id'}"/>
+                        <filter string="Food Type" name="food_type" domain="[]" context="{'group_by': 'food_type'}"/>
                     </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="view_zoo_animal_search" model="ir.ui.view">
-        <field name="name">zoo.animal.search</field>
-        <field name="model">zoo.animal</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name"/>
-                <field name="food_type"/>
-                <field name="date_birth"/>
-                <field name="gender"/>
-                <field name="animal_country_id"/>
-                <field name="animal_continent_id"/>
-                <field name="age" filter_domain="[('age', '>=', self)]"/>
-                <field name="zoo_id"/>
-                <field name="species_id"/>
-                <field name="status"/>
-                <field name="date_of_death"/>
-                <filter string="Alive" name="alive" domain="[('status', '=', 'alive')]"/>
-                <filter string="Sick" name="sick" domain="[('status', '=', 'sick')]"/>
-                <filter string="Dead" name="dead" domain="[('status', '=', 'dead')]"/>
-                <filter string="Herbivore" name="herbivores" domain="[('food_type', '=', 'herbivore')]"/>
-                <filter string="Carnivore" name="carnivores" domain="[('food_type', '=', 'carnivore')]"/>
-                <filter string="Omnivore" name="omnivores" domain="[('food_type', '=', 'omnivore')]"/>
-                <filter string="Frugivore" name="frugivores" domain="[('food_type', '=', 'frugivore')]"/>
-                <filter string="Piscivore" name="piscivores" domain="[('food_type', '=', 'piscivore')]"/>
-                <filter string="Insectivore" name="insectivores" domain="[('food_type', '=', 'insectivore')]"/>
-                <filter string="Folivore" name="folivores" domain="[('food_type', '=', 'folivore')]"/>
-                <filter string="Nectarivore" name="nectarivores" domain="[('food_type', '=', 'nectarivore')]"/>
-                <filter string="Granivore" name="granivores" domain="[('food_type', '=', 'granivore')]"/>
-                <group expand="0" string="Group By">
-                    <filter string="Country" name="country" domain="[]" context="{'group_by': 'animal_country_id'}"/>
-                    <filter string="Continent" name="continent" domain="[]" context="{'group_by': 'animal_continent_id'}"/>
-                    <filter string="Species" name="species" domain="[]" context="{'group_by': 'species_id'}"/>
-                    <filter string="Zoo" name="zoo" domain="[]" context="{'group_by': 'zoo_id'}"/>
-                    <filter string="Food Type" name="food_type" domain="[]" context="{'group_by': 'food_type'}"/>
-                </group>
-            </search>
-        </field>
-    </record>
+                </search>
+            </field>
+        </record>
+    </data>
 </odoo>

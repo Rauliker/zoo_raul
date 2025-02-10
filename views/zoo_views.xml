@@ -25,6 +25,16 @@
         <field name="arch" type="xml">
             <form string="Zoo Form">
                 <sheet>
+                    <header>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="%(animal_module_action)d" type="action" icon="fa-eye"
+                                    class="btn-primary"
+                                    context="{'search_default_zoo_id': active_id}"
+                                    domain="[('zoo_id', '=', active_id)]">
+                                <field name="animal_count" widget="statinfo" string="Animals"/>
+                            </button>
+                        </div>
+                    </header>
                     <h1>
                         <field name="name"/>
                     </h1>
@@ -64,5 +74,4 @@
             </search>
         </field>
     </record>
-
 </odoo>

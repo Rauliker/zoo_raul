@@ -39,7 +39,17 @@ class Zoo(models.Model):
         string="Animal",
         required=True,
     )
+    animal_count = fields.Integer(
+        string="Animal Count",
+        compute="_compute_animal_count",
+        store=True
+    )
 
+    @api.depends('animal_id')
+    def _compute_animal_count(self):
+        for record in self:
+            record.animal_count = len(record.animal_id)
+    
     @api.onchange('provincia_id')
     def _onchange_provincia_id(self):
         if self.provincia_id:

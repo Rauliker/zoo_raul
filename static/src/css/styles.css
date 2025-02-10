@@ -1,0 +1,12 @@
+/* Estilos para el árbol de animales */
+.o_list_view .decoration-success {
+    background-color: #d4edda !important; /* Verde claro para herbívoros */
+}
+
+.o_list_view .decoration-danger {
+    background-color: #f8d7da !important; /* Rojo claro para carnívoros */
+}
+
+.o_list_view .decoration-info {
+    background-color: #d1ecf1 !important; /* Azul claro para omnívoros */
+}

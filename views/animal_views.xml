@@ -11,14 +11,16 @@
             <field name="name">zoo.animal.tree</field>
             <field name="model">zoo.animal</field>
             <field name="arch" type="xml">
-                <tree>
-                    <field name="name" />
+                <tree decoration-success="food_type == 'herbivore'"
+                    decoration-danger="food_type == 'carnivore'"
+                    decoration-info="food_type == 'omnivore'">
+                    <field name="name"/>
                     <field name="food_type"/>
-                    <field name="date_birth" />
-                    <field name="gender" />
-                    <field name="animal_country_id" />
-                    <field name="animal_continent_id" />
-                    <field name="age" />
+                    <field name="date_birth"/>
+                    <field name="gender"/>
+                    <field name="animal_country_id"/>
+                    <field name="animal_continent_id"/>
+                    <field name="age"/>
                     <field name="status"/>
                 </tree>
             </field>

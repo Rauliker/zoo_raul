@@ -46,7 +46,7 @@ class ZooEvent(models.Model):
         ('canceled', 'Canceled')
     ], string='Status', default='draft')
 
-    capacity = fields.Integer(string='Max Capacity', default=0)
+    capacity = fields.Integer(string='Max Capacity', default=10)
 
     _sql_constraints = [
         ('check_date',

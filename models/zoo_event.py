@@ -72,34 +72,23 @@ class ZooEvent(models.Model):
             if event.capacity > 0 and len(event.attendee_ids) > event.capacity:
                 raise ValidationError("Cannot add more attendees. Event is at full capacity.")
 
-    def write(self, vals):
-        if 'state' in vals:
-            for event in self:
-                new_state = vals['state']
-                if event.state == 'canceled':
-                    raise ValidationError("A canceled event cannot change state.")
-                if event.state == 'completed' and new_state != 'completed':
-                    raise ValidationError("A completed event cannot be changed.")
-                if event.state == 'confirmed' and new_state == 'draft':
-                    raise ValidationError("Cannot revert back to draft state.")
-        return super(ZooEvent, self).write(vals)
-
     def action_confirm(self):
         if self.state == 'draft':
-            self.write({'state': 'confirmed'})
+            self.state = 'confirmed'
         else:
             raise ValidationError("Only draft events can be confirmed.")
 
     def action_complete(self):
         if self.state == 'confirmed':
-            self.write({'state': 'completed'})
+            self.state = 'completed'
         else:
             raise ValidationError("Only confirmed events can be completed.")
 
     def action_cancel(self):
         if self.state == 'completed':
             raise ValidationError("A completed event cannot be canceled.")
-        self.write({'state': 'canceled'})
+        self.state = 'canceled'
+
 
     @api.model
     def check_event_status(self):

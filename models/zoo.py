@@ -39,6 +39,11 @@ class Zoo(models.Model):
         string="Animal",
         required=True,
     )
+    event_ids = fields.One2many(
+        "zoo.event", "zoo_id",
+        string="Events"
+    )
+
     animal_count = fields.Integer(
         string="Animal Count",
         compute="_compute_animal_count",

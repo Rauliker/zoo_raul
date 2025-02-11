@@ -73,26 +73,38 @@ class ZooEvent(models.Model):
                 raise ValidationError("Cannot add more attendees. Event is at full capacity.")
 
     def write(self, vals):
-        if 'attendee_ids' in vals:
-            new_attendees = vals.get('attendee_ids', [])
-            if isinstance(new_attendees, list) and any(op[0] in (0, 4) for op in new_attendees):
-                total_attendees = len(self.attendee_ids) + sum(1 for op in new_attendees if op[0] in (0, 4))
-                if self.capacity > 0 and total_attendees > self.capacity:
-                    raise ValidationError("Cannot add more attendees. Event is at full capacity.")
+        if 'state' in vals:
+            for event in self:
+                new_state = vals['state']
+                if event.state == 'canceled':
+                    raise ValidationError("A canceled event cannot change state.")
+                if event.state == 'completed' and new_state != 'completed':
+                    raise ValidationError("A completed event cannot be changed.")
+                if event.state == 'confirmed' and new_state == 'draft':
+                    raise ValidationError("Cannot revert back to draft state.")
         return super(ZooEvent, self).write(vals)
 
     def action_confirm(self):
-        self.write({'state': 'confirmed'})
+        if self.state == 'draft':
+            self.write({'state': 'confirmed'})
+        else:
+            raise ValidationError("Only draft events can be confirmed.")
 
     def action_complete(self):
-        self.write({'state': 'completed'})
+        if self.state == 'confirmed':
+            self.write({'state': 'completed'})
+        else:
+            raise ValidationError("Only confirmed events can be completed.")
 
     def action_cancel(self):
+        if self.state == 'completed':
+            raise ValidationError("A completed event cannot be canceled.")
         self.write({'state': 'canceled'})
 
     @api.model
     def check_event_status(self):
         today = fields.Datetime.now()
-        for event in self.search([('state', '!=', 'canceled')]):
+        events = self.search([('state', '!=', 'canceled')])
+        for event in events:
             if event.end_date and event.end_date < today:
-                event.write({'state': 'completed'})
+                event.state = 'completed'

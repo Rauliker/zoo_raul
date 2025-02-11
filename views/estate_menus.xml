@@ -4,6 +4,7 @@
         <menuitem id="zoo_view" name="Zoos" action="zoo_module_action"/>
         <menuitem id="action_zoo_menu_animal" name="Animal" action="animal_module_action"/>
         <menuitem id="action_zoo_species_menu" name="Species" action="zoo_species_action"/>
+        <menuitem id="menu_zoo_event_menu" name="Events" action="action_zoo_event"/>
         <menuitem id="settings" name="Settings">
             <menuitem id="action_zoo_menu_continent" name="Continent" action="action_zoo_continent"/>
         </menuitem>

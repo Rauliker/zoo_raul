@@ -7,6 +7,7 @@
         'views/zoo_views.xml',
         'views/species_views.xml',  
         'views/animal_views.xml',
+        'views/zoo_event_views.xml',
         'views/city_views.xml',
         'views/continent_views.xml', 
         'views/estate_menus.xml',

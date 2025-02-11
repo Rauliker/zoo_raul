@@ -4,3 +4,4 @@
 "access_zoo_species","zoo.speciesl","model_zoo_species",base.group_user,1,1,1,1
 "access_zoo_city","access_zoo_city","model_zoo_city",base.group_user,1,1,1,1
 "access_zoo_continent","access_zoo_continent","model_zoo_continent",base.group_user,1,1,1,1
+"access_zoo_event","access_zoo_event","model_zoo_event",base.group_user,"1","1","1","1"

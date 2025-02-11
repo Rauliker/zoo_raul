@@ -48,6 +48,9 @@
                         <page string="Animals">
                             <field name="animal_id" widget="one2many"/>
                         </page>
+                        <page string="Events">
+                            <field name="event_ids" widget="one2many"/>
+                        </page>
                     </notebook>
                 </sheet>
             </form>

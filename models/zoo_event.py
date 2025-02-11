@@ -66,6 +66,21 @@ class ZooEvent(models.Model):
             if event.capacity > 0 and len(event.attendee_ids) > event.capacity:
                 raise ValidationError("The number of attendees exceeds the event capacity.")
 
+    @api.onchange('attendee_ids')
+    def _onchange_attendee_ids(self):
+        for event in self:
+            if event.capacity > 0 and len(event.attendee_ids) > event.capacity:
+                raise ValidationError("Cannot add more attendees. Event is at full capacity.")
+
+    def write(self, vals):
+        if 'attendee_ids' in vals:
+            new_attendees = vals.get('attendee_ids', [])
+            if isinstance(new_attendees, list) and any(op[0] in (0, 4) for op in new_attendees):
+                total_attendees = len(self.attendee_ids) + sum(1 for op in new_attendees if op[0] in (0, 4))
+                if self.capacity > 0 and total_attendees > self.capacity:
+                    raise ValidationError("Cannot add more attendees. Event is at full capacity.")
+        return super(ZooEvent, self).write(vals)
+
     def action_confirm(self):
         self.write({'state': 'confirmed'})
 

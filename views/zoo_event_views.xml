@@ -9,7 +9,9 @@
         <field name="name">zoo.event.tree</field>
         <field name="model">zoo.event</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'completed'" decoration-warning="state == 'draft'" decoration-muted="state == 'canceled'">
+            <tree decoration-success="state == 'completed'" 
+                decoration-warning="state == 'draft'" 
+                decoration-danger="state == 'canceled'">
                 <field name="name"/>
                 <field name="start_date"/>
                 <field name="end_date"/>

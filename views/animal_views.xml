@@ -12,8 +12,8 @@
             <field name="model">zoo.animal</field>
             <field name="arch" type="xml">
                 <tree decoration-success="status == 'alive'"
-                    decoration-danger="status == 'sick'"
-                    decoration-info="status == 'dead'">
+                    decoration-warning="status == 'sick'"
+                    decoration-danger="status == 'dead'">
                     <field name="name"/>
                     <field name="food_type"/>
                     <field name="date_birth"/>

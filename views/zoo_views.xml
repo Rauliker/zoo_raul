@@ -12,6 +12,7 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
+                <field name="animal_count" string="animals"/>
                 <field name="size" />
                 <field name="country_id" />
                 <field name="city_name" />
